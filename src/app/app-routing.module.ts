@@ -9,22 +9,7 @@ export const routes: Routes = [
     path: '', 
     component:HomeComponent, 
     pathMatch: 'full',
-    children:[
-      {
-        path:'',
-        component:IndexComponent,
-        pathMatch:'full'
-      },
-      {
-        path:'tournament',
-        component:TournamentListComponent,
-        pathMatch:'full'
-      },
-      { 
-        path: 'events', 
-        loadChildren: () => import('./modules/event/event.module').then(m => m.EventModule) 
-      }
-    ]
+    loadChildren: () => import('./shell/home/home.module').then(m => m.HomeModule) 
   }
   
   // { path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) }
