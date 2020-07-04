@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+//import { CommonModule } from "@angular/common";
 import {CustomMaterialModule} from './custom-material/custom-material.module'
 
 
@@ -13,6 +14,10 @@ import { FooterComponent } from './shell/footer/footer.component';
 import {TournamentRoutingModule} from './modules/tournament/tournament-routing.module';
 import { IndexComponent } from './shell/home/index/index.component';
 import { EventModule } from './modules/event/event.module';
+import {SettingsService} from './core/settings/settings.service'
+import {CoreModule} from './core/core.module'
+import {SharedModule} from './core/shared/shared.module'
+
 
 @NgModule({
   declarations: [
@@ -24,13 +29,16 @@ import { EventModule } from './modules/event/event.module';
   ],
   imports: [
     BrowserModule,
+   //CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CustomMaterialModule,
     TournamentRoutingModule,
-    EventModule
+    EventModule,
+    CoreModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [SettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

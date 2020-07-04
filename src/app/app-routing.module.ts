@@ -5,22 +5,27 @@ import { TournamentListComponent } from './modules/tournament/tournament-list/to
 import {IndexComponent} from './shell/home/index/index.component'
 
 export const routes: Routes = [
-  { path: '', 
+  { 
+    path: '', 
     component:HomeComponent, 
     pathMatch: 'full',
-    children:[{
-      path:'',
-      component:IndexComponent,
-      pathMatch:'full'},
+    children:[
       {
-      path:'tournament',
-      component:TournamentListComponent,
-      pathMatch:'full'
-    },
-    { 
-      path: 'events', 
-      loadChildren: () => import('./modules/event/event.module').then(m => m.EventModule) },
-    ]}
+        path:'',
+        component:IndexComponent,
+        pathMatch:'full'
+      },
+      {
+        path:'tournament',
+        component:TournamentListComponent,
+        pathMatch:'full'
+      },
+      { 
+        path: 'events', 
+        loadChildren: () => import('./modules/event/event.module').then(m => m.EventModule) 
+      }
+    ]
+  }
   
   // { path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) }
 ];
