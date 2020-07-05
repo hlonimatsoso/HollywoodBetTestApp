@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //import { CommonModule } from "@angular/common";
-import {CustomMaterialModule} from './custom-material/custom-material.module'
+import {CustomMaterialModule} from './modules/custom-material/custom-material.module'
 
 
 import { AppRoutingModule } from './app-routing.module';

@@ -5,7 +5,7 @@ import {HeaderComponent} from '../header/header.component'
 import {FooterComponent} from '../footer/footer.component'
 import {IndexComponent} from '../home/index/index.component'
 import {HomeRoutingModule} from '../home/home-routing.module'
-import {CustomMaterialModule} from '../../custom-material/custom-material.module'
+import {CustomMaterialModule} from '../../modules/custom-material/custom-material.module'
 
 
 @NgModule({
