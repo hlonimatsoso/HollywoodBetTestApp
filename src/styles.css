@@ -2,3 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.margin_x_5{
+    margin-left: 5px;
+    margin-right: 5px;
+}

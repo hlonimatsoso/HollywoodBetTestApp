@@ -1,0 +1,21 @@
+<div class="toolBar">
+    <mat-checkbox (change)="test($event.checked)"></mat-checkbox>
+    <span class="margin_x_5">Enabler Editing</span>
+    <div class="toolBarButtons margin_x_5" *ngIf="enableEditing">
+        <mat-button-toggle-group [(ngModel)]="activeToolBarButton">
+            <mat-button-toggle value="Add">Add</mat-button-toggle>
+            <mat-button-toggle value="Edit">Edit</mat-button-toggle>
+            <mat-button-toggle value="Delete">Delete</mat-button-toggle>
+          </mat-button-toggle-group>
+    </div>
+     <div class="example-container" *ngIf="enableEditing && (activeToolBarButton == 'Add')">
+        <mat-form-field appearance="fill">
+            <mat-label>Tournament Name</mat-label>
+            <input matInput placeholder="Durban July" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <button mat-button [disabled]="email.invalid" (click)="addTournament()">Add Tournament</button>
+     </div>
+        {{activeToolBarButton}}
+</div>
+

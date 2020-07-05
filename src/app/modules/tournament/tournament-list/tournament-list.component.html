@@ -2,7 +2,11 @@
     <h3>Welcome to Hollywood Bet Tournaments</h3>
 </div>
 
+<app-tournament-tool-bar></app-tournament-tool-bar>
+
+<br/>
 
 <div class="tournamentsContainer">
-    <app-tournament-card *ngFor="let t of _tournaments" [tournament]="t"></app-tournament-card>
+    <app-tournament-card class=".margin_X_5" *ngFor="let t of _tournaments" [tournament]="t" [enableEditing]="enableEditing"></app-tournament-card>
 </div>
+

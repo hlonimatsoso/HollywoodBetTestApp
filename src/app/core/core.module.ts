@@ -5,7 +5,7 @@ import {AuthServiceService} from './auth/auth-service.service'
 import {SettingsService} from './settings/settings.service'
 import { HttpClientModule } from '@angular/common/http';
 import {TournamentsService} from './shared/services/tournaments.service'
-
+import {MessageBusService} from '../core/shared/services/message-bus.service'
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import {TournamentsService} from './shared/services/tournaments.service'
     SettingsService,
     AuthServiceService,
     AuthGuardService,
-    TournamentsService
+    TournamentsService,
+    MessageBusService
   ]
 })
 export class CoreModule { }

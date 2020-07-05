@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Tournament} from '../../../models/Tournament'
+import {Tournament} from '../../../core/models/Tournament'
 
 @Component({
   selector: 'app-tournament-card',
@@ -9,6 +9,7 @@ import {Tournament} from '../../../models/Tournament'
 export class TournamentCardComponent implements OnInit {
 
   @Input() tournament: Tournament;
+  @Input() enableEditing:boolean;
   
   constructor() { }
 

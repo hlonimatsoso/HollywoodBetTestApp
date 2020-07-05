@@ -3,11 +3,17 @@
     justify-content: center;
 }
 
-.tournamentsContainer{
+.toolBar{
     display: flex;
 }
 
-.tournamentsContainer app-tournament-card{
+.tournamentsContainer{
+    display: flex;
+    flex-flow: wrap;
+}
+
+
+app-tournament-card{
     margin-left: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
