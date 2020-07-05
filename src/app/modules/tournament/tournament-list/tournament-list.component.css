@@ -1,0 +1,13 @@
+.headingContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.tournamentsContainer{
+    display: flex;
+}
+
+.tournamentsContainer app-tournament-card{
+    margin-left: 5px;
+    margin-right: 10px;
+}

@@ -5,6 +5,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatMenuModule} from '@angular/material/menu'
 import {MatIconModule} from '@angular/material/icon'
+import {MatCardModule} from '@angular/material/card'
 
 
 @NgModule({
@@ -13,14 +14,16 @@ import {MatIconModule} from '@angular/material/icon'
     MatCheckboxModule,
     MatToolbarModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   exports:[
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ]
 })
 export class CustomMaterialModule { }

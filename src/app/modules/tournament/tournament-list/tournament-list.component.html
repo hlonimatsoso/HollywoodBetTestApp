@@ -1,5 +1,8 @@
-<p>tournament-list works!</p>
+<div class="headingContainer">
+    <h3>Welcome to Hollywood Bet Tournaments</h3>
+</div>
 
-<ul>
-    <li *ngFor="let t of _tournaments">{{t.tournamentName}}</li>
-</ul>
+
+<div class="tournamentsContainer">
+    <app-tournament-card *ngFor="let t of _tournaments" [tournament]="t"></app-tournament-card>
+</div>

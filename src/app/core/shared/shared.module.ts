@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 //import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { TournamentCardComponent } from './components/tournament-card/tournament-card.component';
+import {CustomMaterialModule} from '../../custom-material/custom-material.module'
 
 
 @NgModule({
-  declarations: [],
+  declarations: [TournamentCardComponent],
   imports: [
     //CommonModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CustomMaterialModule
   ],
   exports:[
-    NgxSpinnerModule//,
-    //CommonModule
+    NgxSpinnerModule,
+    TournamentCardComponent
   ]
 })
 export class SharedModule { }
