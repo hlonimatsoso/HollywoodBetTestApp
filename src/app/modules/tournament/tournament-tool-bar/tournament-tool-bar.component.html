@@ -16,6 +16,19 @@
         </mat-form-field>
         <button mat-button [disabled]="tournament.invalid" (click)="RunUpdate()">{{selectedBUttonText}}</button>
      </div>
+
+     <div class="chips" *ngIf="enableEditing && (activeToolBarButton == 'Delete')">
+       <span>Deleting the following tournaments:</span>
+        <mat-chip-list>
+            <mat-chip selectable removable (removed)="remove(chip)" *ngFor="let chip of deleteList" selected color="warn">
+              {{chip.tournamentName}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+        </mat-chip-list>
+         
+          
+        <button mat-button [disabled]="deleteList.length == 0" (click)="deleteTournament()">{{selectedBUttonText}}</button>
+     </div>
         
 </div>
 

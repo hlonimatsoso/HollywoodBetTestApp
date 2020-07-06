@@ -14,6 +14,10 @@ export class MessageBusService {
   private tournamentToolBox_isEditEnabled = new Subject<boolean>();
   private tournamentToolBox_newTournament = new Subject<Tournament>();
   private _tournamentToolBar_updatedTournament = new Subject<Tournament>();
+  private _tournamentCard_deleteTournament = new Subject<Tournament>();
+  private _tournamentToolBar_deleteTournamentList = new Subject<Tournament[]>();
+
+
 
   private _tournamentService_isBusy = new Subject<boolean>();
   private _tournamentToolBar_activeEditingOption = new Subject<string>();
@@ -44,6 +48,14 @@ export class MessageBusService {
     return this._tournamentToolBar_activeEditingTournament.asObservable();
   }
 
+  get tournamentCard_deleteTournament$(): Observable<Tournament> {
+    return this._tournamentCard_deleteTournament.asObservable();
+  }
+
+  get tournamentToolBar_deleteTournamentList$(): Observable<Tournament[]> {
+    return this._tournamentToolBar_deleteTournamentList.asObservable();
+  }
+
   constructor() { }
 
   // Utility funstions for 'subjects' whom wish to emit updates
@@ -70,6 +82,15 @@ export class MessageBusService {
   public tournamentToolBar_activeEditingTournament_sendUpdate(tournament:Tournament) {
     this._tournamentToolBar_activeEditingTournament.next(tournament);
   }
+
+  public tournamentCard_deleteTournament_sendUpdate(tournament:Tournament) {
+    this._tournamentCard_deleteTournament.next(tournament);
+  }
+
+  public tournamentToolBar_deleteTournamentList_sendUpdate(tournament:Tournament[]) {
+    this._tournamentToolBar_deleteTournamentList.next(tournament);
+  }
+  
 
   clearMessage(subject:Subject<any>) {
       subject.next();

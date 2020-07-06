@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material/card'
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
 import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field'
-// import {lable} from '@angular/material/'
+import {MatChipsModule} from '@angular/material/chips'
 
 
 @NgModule({
@@ -21,7 +21,8 @@ import {MatFormFieldModule} from '@angular/material/form-field'
     MatCardModule,
     MatButtonToggleModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatChipsModule
   ],
   exports:[
     MatButtonModule,
@@ -32,7 +33,8 @@ import {MatFormFieldModule} from '@angular/material/form-field'
     MatCardModule,
     MatButtonToggleModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatChipsModule
   ]
 })
 export class CustomMaterialModule { }

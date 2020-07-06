@@ -42,6 +42,23 @@ export class TournamentListComponent implements OnInit {
       this.tournamentServiceIsBusy = value; 
     });
 
+    this._messageBus.tournamentToolBar_deleteTournamentList$.subscribe(list =>{ 
+      console.log(`Tournament List: _messageBus.tournamentToolBar_deleteTournamentList$ : ${list}`);
+      
+      for (let i in list) {
+        var idToRemove = Number.parseInt(list[i].tournamentID.toString());
+        this._tournaments.splice(idToRemove, 1);
+        console.log(`Removed (${idToRemove}) ${JSON.stringify(list[i]) } from the UI list array`);
+      }
+
+      /*
+      currently a hack to refresh UI. i need to find a suitable binding stratergy for seemless updates 
+      and will sorting this out will also prevent any possible meemory leaks incase I dont unsubscribe from current subscriptions 
+      */ 
+     console.log(`Refreshing UI in a hacky way. FIX HACK!`);
+      this.ngOnInit();
+    });
+
    }
 
   ngOnInit(): void {

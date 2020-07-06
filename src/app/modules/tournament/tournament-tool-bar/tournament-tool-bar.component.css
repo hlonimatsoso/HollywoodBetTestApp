@@ -1,3 +1,5 @@
-.toolBar{
+.toolBar, .chips{
     display: flex;
 }
+
+/*  */

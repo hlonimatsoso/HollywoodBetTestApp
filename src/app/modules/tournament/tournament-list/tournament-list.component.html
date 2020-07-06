@@ -7,6 +7,6 @@
 <br/>
 
 <div class="tournamentsContainer">
-    <app-tournament-card class=".margin_X_5" *ngFor="let t of _tournaments" [tournament]="t" [enableEditing]="enableEditing"></app-tournament-card>
+    <app-tournament-card class=".margin_X_5" *ngFor="let t of _tournaments" [tournament]="t" [attr.data-tournamentId]="t.tournamentID" [enableEditing]="enableEditing"></app-tournament-card>
 </div>
 

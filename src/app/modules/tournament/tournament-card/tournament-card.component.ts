@@ -35,4 +35,18 @@ export class TournamentCardComponent implements OnInit {
 
   }
 
+  delete(x){
+   
+    var id:number = x.currentTarget.attributes.getNamedItem("data-tournamentid").value;
+    var name:string = x.currentTarget.attributes.getNamedItem("data-tournamentname").value;
+    var tourn = new Tournament(id,name);
+
+    console.log(`Tournament Card: deleting ${tourn}`);
+
+    this._messageBus.tournamentCard_deleteTournament_sendUpdate(tourn);
+    this._messageBus.tournamentToolBar_activeEditingOption_sendUpdate("Delete");
+
+
+  }
+
 }

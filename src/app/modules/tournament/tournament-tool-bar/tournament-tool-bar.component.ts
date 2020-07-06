@@ -6,8 +6,7 @@ import { catchError,finalize, tap, map }               from 'rxjs/operators';
 import {Tournament} from '../../../core/models/Tournament';
 import {EditingOptions} from '../../../core/models/EditingOption';
 import {TournamentsService} from '../../../core/shared/services/tournaments.service'
-import { strict } from 'assert';
-import { stringify } from 'querystring';
+
 
 
 @Component({
@@ -23,13 +22,18 @@ export class TournamentToolBarComponent implements OnInit {
 
    activeTournamentForEditing:Tournament;
 
+   deleteList:Tournament[];
+
+
    activeToolBarButtonChange(event:any){
      console.log(`${JSON.stringify(event.value)}`);
      this.tournament.reset();
       this._messageBus.tournamentToolBar_activeEditingOption_sendUpdate(event.value);
    }
 
-  constructor(private _messageBus: MessageBusService, private _tournamentService:TournamentsService) { }
+  constructor(private _messageBus: MessageBusService, private _tournamentService:TournamentsService) {
+    this.deleteList = [];
+   }
 
   ngOnInit(): void {
     this._messageBus.tournamentToolBox_isEditEnabled$.subscribe(value =>{ this.enableEditing = value });
@@ -48,6 +52,12 @@ export class TournamentToolBarComponent implements OnInit {
       this.tournament.setValue(this.activeTournamentForEditing.tournamentName); 
     });
 
+    this._messageBus.tournamentCard_deleteTournament$.subscribe(tournament =>{ 
+      this.deleteList.push(tournament);
+      console.log(`Tournament toolbar: messageBus.tournamentCard_deleteTournament$: adding ${tournament.tournamentName} to the delete list`);
+      
+    });
+
   }
 
   tournament = new FormControl('', [Validators.required]);
@@ -63,17 +73,21 @@ export class TournamentToolBarComponent implements OnInit {
     return `${this.activeToolBarButton} Tournament`;
   }
 
-  // onEnableEditingChanged(value){
-  //   console.log(`onEnableEditingChanged: ${value[1]}`);
-  //   this._messageBus.tournamentToolBox_isEditEnabled_sendUpdate(value);
-  // }
+  remove(t: Tournament): void {
+    const index = this.deleteList.indexOf(t);
 
+    if (index >= 0) {
+      this.deleteList.splice(index, 1);
+    }
+  }
 
   onEnableEditingChanged(x:boolean)
   {
     console.log(x);
     this._messageBus.tournamentToolBox_isEditEnabled_sendUpdate(x);
 
+    // indirectly/dymanically set the default option to "Add" upon enabling editing  
+    this._messageBus.tournamentToolBar_activeEditingOption_sendUpdate("Add");
   }
 
   
@@ -130,7 +144,17 @@ export class TournamentToolBarComponent implements OnInit {
   }
 
   deleteTournament(){
-
+    this._tournamentService.deleteTournament(this.deleteList)
+    .pipe(
+      finalize(()=>{
+        console.log(`Tournament Toolbar: tournamentToolBar_deleteTournamentList_sendUpdate: ${this.deleteList}`);
+        this._messageBus.tournamentToolBar_deleteTournamentList_sendUpdate(this.deleteList);
+        this.deleteList = [];
+      })
+    )
+    .subscribe(o=>{
+      console.log(`Tournament Toolbar: Tournament service delete result: ${o}`);
+    });
   }
 
   httpRequestError(err: any) {

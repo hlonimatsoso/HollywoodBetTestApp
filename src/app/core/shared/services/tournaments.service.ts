@@ -82,7 +82,12 @@ export class TournamentsService extends BaseServiceService {
       return result;
   }
 
-  addTournament(tournament:Tournament){
+  deleteTournament(tournament:Tournament[]){
+    
+
+    for (let i in tournament) {
+      tournament[i].tournamentID = Number.parseInt(tournament[i].tournamentID.toString());
+    }
     
     this._messageBus.tournamentService_isBusy_sendUpdate(true);
 
@@ -93,15 +98,39 @@ export class TournamentsService extends BaseServiceService {
       })
     };
 
-    console.log(`Posting to ${this._settings.tournamentsUrl}`);
-    return this._http.post<Tournament>(this._settings.tournamentsUrl, JSON.stringify(tournament),httpOptions)
-               .pipe(
-                  tap(x => console.log(`Tournament Service: Post Tournament -> ${JSON.stringify(x)}`)),
-                  finalize (()=>{
-                    this._messageBus.tournamentService_isBusy_sendUpdate(false);
-                  })
-                    //catchError( this.handleError())
-                );
+   var result = this._http.request('DELETE', this._settings.tournamentsUrl + '/Delete', {
+      headers:new HttpHeaders({
+        'Content-Type':  'application/json'//,
+        //'Authorization': token
+      }),
+      body: tournament 
+      });
+
+    this._messageBus.tournamentService_isBusy_sendUpdate(false);
+
+    return result;
+  //   let body = {
+  //     tournaments:tournament
+  // };
+  
+  // let options = new RequestOptionsArgs({ 
+  //     body: body,
+  //     method: RequestMethod.Delete
+  //   });
+  
+  // this.http.request('http://testAPI:3000/stuff', options)
+  //     .subscribe((ok)=>{console.log(ok)});
+
+
+    // console.log(`Posting a delete to ${this._settings.tournamentsUrl}`);
+    // return this._http.delete<Tournament[]>(this._settings.tournamentsUrl, tournamen,,httpOptions)
+    //            .pipe(
+    //               tap(x => console.log(`Tournament Service: Post Tournament -> ${JSON.stringify(x)}`)),
+    //               finalize (()=>{
+    //                 this._messageBus.tournamentService_isBusy_sendUpdate(false);
+    //               })
+    //                 //catchError( this.handleError())
+    //             );
   }
 
 }

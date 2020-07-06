@@ -7,7 +7,7 @@
     display: flex;
 }
 
-.tournamentsContainer{
+.tournamentsContainer, .chips{
     display: flex;
     flex-flow: wrap;
 }
