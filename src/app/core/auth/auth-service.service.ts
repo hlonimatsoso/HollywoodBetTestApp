@@ -48,13 +48,21 @@ httpErrors$ = this._httpErrors.asObservable();
     return this._manager.signinRedirect();   
   }
 
+  logOUt() { 
+    return this._manager.signoutRedirect();   
+  }
+
   async completeAuthentication() {
+    console.log(`Auth Service: completeAuthentication started`);
       this._user = await this._manager.signinRedirectCallback();
+    console.log(`Auth Service: completeAuthentication signed in user ${JSON.stringify(this._user)}`);
+
       this._isAuthenticated.next(this.isAuthenticated());      
   }  
 
-  register(userRegistration: any) {    
-    return this._http.post(this._settings.authApiURI + '/account', userRegistration).pipe(catchError(this.handleError));
+  register(userRegistration: any) { 
+    debugger;   
+    return this._http.post(this._settings.authApiURI + '/account/register', userRegistration).pipe(catchError(this.handleError));
   }
 
 

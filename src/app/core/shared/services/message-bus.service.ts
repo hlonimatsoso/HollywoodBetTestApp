@@ -6,9 +6,22 @@ import {Tournament} from '../../models/Tournament'
   providedIn: 'root'
 })
 export class MessageBusService {
+  
   private tournamentToolBox_isEditEnabled = new Subject<boolean>();
   private tournamentToolBox_newTournament = new Subject<Tournament>();
+  private _tournamentService_isBusy = new Subject<boolean>();
 
+  get tournamentToolBox_isEditEnabled$(): Observable<boolean> {
+    return this.tournamentToolBox_isEditEnabled.asObservable();
+  }
+
+  get tournamentToolBox_newTournament$(): Observable<Tournament> {
+    return this.tournamentToolBox_newTournament.asObservable();
+  }
+
+  get tournamentService_isBusy$(): Observable<boolean> {
+    return this._tournamentService_isBusy.asObservable();
+  }
 
   constructor() { }
 
@@ -20,17 +33,12 @@ export class MessageBusService {
     this.tournamentToolBox_newTournament.next(tournament);
   }
 
-  get tournamentToolBox_isEditEnabled$(): Observable<boolean> {
-    return this.tournamentToolBox_isEditEnabled.asObservable();
+  public tournamentService_isBusy_sendUpdate(isBusy:boolean) {
+    this._tournamentService_isBusy.next(isBusy);
   }
 
-  get tournamentToolBox_newTournament$(): Observable<Tournament> {
-    return this.tournamentToolBox_newTournament.asObservable();
+  clearMessage(subject:Subject<any>) {
+      subject.next();
   }
-
-  // clearMessage() {
-  //     this.tournamentToolBox_isEditEnabled.next();
-  // }
-
 
 }

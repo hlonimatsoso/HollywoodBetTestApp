@@ -1,5 +1,5 @@
 <div class="toolBar">
-    <mat-checkbox (change)="test($event.checked)"></mat-checkbox>
+    <mat-checkbox (change)="onEnableEditingChanged($event.checked)"></mat-checkbox>
     <span class="margin_x_5">Enabler Editing</span>
     <div class="toolBarButtons margin_x_5" *ngIf="enableEditing">
         <mat-button-toggle-group [(ngModel)]="activeToolBarButton">

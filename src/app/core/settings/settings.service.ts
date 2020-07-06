@@ -15,7 +15,7 @@ export class SettingsService {
         redirect_uri: 'http://localhost:12000/auth-callback',
         post_logout_redirect_uri: 'http://localhost:12000/',
         response_type:"id_token token",
-        scope:"openid profile email api.read",
+        scope:"openid profile email",
         filterProtocolClaims: true,
         loadUserInfo: true,
         automaticSilentRenew: true,
@@ -24,14 +24,14 @@ export class SettingsService {
   }
 
   get authApiURI() {
-      return 'https://localhost:10000/api';
+      return 'https://localhost:11000/api';
   }    
   
   get resourceApiURI() {
       return 'http://localhost:11000/api';
   }  
 
-  get tournaments(){
-    return "https://localhost:11000/api/Tournaments/DummyTournaments";
+  get tournamentsUrl(){
+    return "https://localhost:11000/api/Tournaments";
   }
 }

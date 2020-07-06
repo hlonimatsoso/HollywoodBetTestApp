@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './shell/home/home.component'
 import { TournamentListComponent } from './modules/tournament/tournament-list/tournament-list.component';
-import {IndexComponent} from './shell/home/index/index.component'
+import {AuthCallbackComponent} from './core/auth/auth-callback/auth-callback.component'
 
 export const routes: Routes = [
+  { path: 'auth-callback', component: AuthCallbackComponent  },
   { 
     path: '', 
     component:HomeComponent, 

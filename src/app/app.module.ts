@@ -17,15 +17,12 @@ import { EventModule } from './modules/event/event.module';
 import {SettingsService} from './core/settings/settings.service'
 import {CoreModule} from './core/core.module'
 import {SharedModule} from './core/shared/shared.module'
+import {AccountModule} from './core/account/account.module'
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    //HomeComponent,
-    //HeaderComponent,
-    //FooterComponent,
-    //IndexComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +33,8 @@ import {SharedModule} from './core/shared/shared.module'
     TournamentModule,
     EventModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    AccountModule
   ],
   providers: [SettingsService],
   bootstrap: [AppComponent]

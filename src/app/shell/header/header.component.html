@@ -12,7 +12,16 @@
         </span>
     </div>
     <span class="spacer"></span>
-    <button mat-button (click)="logIn()">Log In</button>
+    <div *ngIf="isAuthenticated else notAuthenticated">
+        <div>Hello {{name}}</div>
+        <button mat-button (click)="logOut()">Sign Out</button>
+    </div>
+    <ng-template #notAuthenticated>
+        <button mat-button (click)="logIn()">Log In</button>
+        <button mat-button  routerLink="/register">Register</button>
+    </ng-template>
+   
+    
     <!-- <mat-icon class="icon">favorite</mat-icon> -->
 </mat-toolbar>
 
