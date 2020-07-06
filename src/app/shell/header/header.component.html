@@ -12,7 +12,7 @@
         </span>
     </div>
     <span class="spacer"></span>
-    <div *ngIf="isAuthenticated else notAuthenticated">
+    <div class="userName" *ngIf="isAuthenticated else notAuthenticated">
         <div>Hello {{name}}</div>
         <button mat-button (click)="logOut()">Sign Out</button>
     </div>

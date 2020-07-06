@@ -61,6 +61,27 @@ export class TournamentsService extends BaseServiceService {
       return result;
   }
 
+  
+  updateTournament (tournament: Tournament): Observable<Tournament> {
+    this._messageBus.tournamentService_isBusy_sendUpdate(true);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'//,
+        //'Authorization': token
+      })
+    };
+    console.log(`Hitting ${this._settings.tournamentsUrl}. with PUT  ` + JSON.stringify(tournament));
+
+    tournament.tournamentID = Number.parseInt(tournament.tournamentID.toString());
+    var result = this._http.post<Tournament>(this._settings.tournamentsUrl, tournament, httpOptions)
+      .pipe(
+        tap((x)=>{ console.log(`Tap Result : ` + x) }),
+        catchError(this.handleError)
+      );
+
+      return result;
+  }
+
   addTournament(tournament:Tournament){
     
     this._messageBus.tournamentService_isBusy_sendUpdate(true);

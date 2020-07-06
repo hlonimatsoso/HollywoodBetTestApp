@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() { 
-debugger;
+
     this.spinner.show();
 
     this.authService.register(this.userRegistration)

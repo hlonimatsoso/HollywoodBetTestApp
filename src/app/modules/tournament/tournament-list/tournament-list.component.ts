@@ -18,17 +18,27 @@ export class TournamentListComponent implements OnInit {
   constructor(private _service:TournamentsService,private _messageBus: MessageBusService) {
     
     this._messageBus.tournamentToolBox_isEditEnabled$.subscribe(value =>{ 
-      console.log(`Tournament List: tournamentToolBox_isEditEnabled$ : ${value}`);
+      console.log(`Tournament List: _messageBus.tournamentToolBox_isEditEnabled$ : ${value}`);
       this.enableEditing = value 
     });
 
     this._messageBus.tournamentToolBox_newTournament$.subscribe(value =>{ 
-      console.log(`Tournament List: tournamentToolBox_newTournament$ : ${value}`);
+      console.log(`Tournament List: _messageBus.tournamentToolBox_newTournament$ : ${value}`);
       this._tournaments.push(value); 
     });
 
+    this._messageBus.tournamentToolBar_updatedTournament$.subscribe(value =>{ 
+      console.log(`Tournament List: _messageBus.tournamentToolBox_updatedTournament$ : ${value}`);
+      const index = this._tournaments.findIndex(t => t.tournamentID == value.tournamentID);
+      console.log(`Tournament List: Before update: (${this._tournaments[index].tournamentID}) ${this._tournaments[index].tournamentName} `);
+      this._tournaments[index].tournamentName = value.tournamentName;
+      console.log(`Tournament List: After update: (${this._tournaments[index].tournamentID}) ${this._tournaments[index].tournamentName} `);
+
+     
+    });
+
     this._messageBus.tournamentService_isBusy$.subscribe(value =>{ 
-      console.log(`Tournament List: tournamentService_isBusy$ : ${value}`);
+      console.log(`Tournament List: _messageBus.tournamentService_isBusy$ : ${value}`);
       this.tournamentServiceIsBusy = value; 
     });
 

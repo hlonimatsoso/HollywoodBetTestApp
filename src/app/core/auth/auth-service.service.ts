@@ -61,7 +61,7 @@ httpErrors$ = this._httpErrors.asObservable();
   }  
 
   register(userRegistration: any) { 
-    debugger;   
+
     return this._http.post(this._settings.authApiURI + '/account/register', userRegistration).pipe(catchError(this.handleError));
   }
 
