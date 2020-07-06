@@ -55,6 +55,9 @@ export class TournamentsService extends BaseServiceService {
     var result = this._http.post<Tournament>(this._settings.tournamentsUrl, t, httpOptions)
       .pipe(
         tap((x)=>{ console.log(`Tap Result : ` + x) }),
+        finalize(()=>{
+          this._messageBus.tournamentService_isBusy_sendUpdate(false);
+        }),
         catchError(this.handleError)
       );
 
@@ -76,6 +79,9 @@ export class TournamentsService extends BaseServiceService {
     var result = this._http.post<Tournament>(this._settings.tournamentsUrl, tournament, httpOptions)
       .pipe(
         tap((x)=>{ console.log(`Tap Result : ` + x) }),
+        finalize(()=>{
+          this._messageBus.tournamentService_isBusy_sendUpdate(false);
+        }),
         catchError(this.handleError)
       );
 
@@ -83,14 +89,12 @@ export class TournamentsService extends BaseServiceService {
   }
 
   deleteTournament(tournament:Tournament[]){
-    
+    this._messageBus.tournamentService_isBusy_sendUpdate(true);
 
     for (let i in tournament) {
       tournament[i].tournamentID = Number.parseInt(tournament[i].tournamentID.toString());
     }
     
-    this._messageBus.tournamentService_isBusy_sendUpdate(true);
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'//,
@@ -104,9 +108,13 @@ export class TournamentsService extends BaseServiceService {
         //'Authorization': token
       }),
       body: tournament 
-      });
+      }).pipe(
+        finalize(()=>{
+          this._messageBus.tournamentService_isBusy_sendUpdate(false);
+        })
+      );
 
-    this._messageBus.tournamentService_isBusy_sendUpdate(false);
+    
 
     return result;
   //   let body = {

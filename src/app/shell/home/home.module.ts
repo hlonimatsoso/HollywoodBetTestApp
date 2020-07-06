@@ -6,6 +6,8 @@ import {FooterComponent} from '../footer/footer.component'
 import {IndexComponent} from '../home/index/index.component'
 import {HomeRoutingModule} from '../home/home-routing.module'
 import {CustomMaterialModule} from '../../modules/custom-material/custom-material.module'
+import {CoreModule} from '../../core/core.module'
+import {SharedModule} from '../../core/shared/shared.module'
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import {CustomMaterialModule} from '../../modules/custom-material/custom-materia
   imports: [
     CommonModule,
     HomeRoutingModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    CoreModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

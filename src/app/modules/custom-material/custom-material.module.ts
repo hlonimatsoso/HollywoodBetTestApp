@@ -9,7 +9,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle'
 import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatChipsModule} from '@angular/material/chips'
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
 @NgModule({
   imports: [
@@ -22,7 +22,8 @@ import {MatChipsModule} from '@angular/material/chips'
     MatButtonToggleModule,
     MatInputModule,
     MatFormFieldModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressSpinnerModule
   ],
   exports:[
     MatButtonModule,
@@ -34,7 +35,8 @@ import {MatChipsModule} from '@angular/material/chips'
     MatButtonToggleModule,
     MatInputModule,
     MatFormFieldModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressSpinnerModule
   ]
 })
 export class CustomMaterialModule { }
