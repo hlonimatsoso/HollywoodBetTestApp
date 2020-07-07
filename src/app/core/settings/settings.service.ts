@@ -34,4 +34,8 @@ export class SettingsService {
   get tournamentsUrl(){
     return "https://localhost:11000/api/Tournaments";
   }
+
+  get eventsUrl(){
+    return "https://localhost:11000/api/Events";
+  }
 }

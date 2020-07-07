@@ -1,0 +1,35 @@
+
+<div class="toolBar">
+    <mat-checkbox (change)="onEnableEditingChanged($event.checked)"></mat-checkbox>
+    <span class="margin_x_5">Enabler Editing</span>
+    <div class="toolBarButtons margin_x_5" *ngIf="enableEditing">
+        <mat-button-toggle-group (change)="activeToolBarButtonChange($event)">
+            <mat-button-toggle value="Add">Add</mat-button-toggle>
+            <mat-button-toggle disabled value="Edit">Edit</mat-button-toggle>
+            <mat-button-toggle value="Delete">Delete</mat-button-toggle>
+          </mat-button-toggle-group>
+    </div>
+     <div class="example-container" *ngIf="enableEditing && (activeToolBarButton != 'Delete')">
+        <mat-form-field appearance="fill">
+            <mat-label>Event Name</mat-label>
+            <input matInput placeholder="Durban July" [formControl]="event" required>
+            <mat-error *ngIf="event.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <button mat-button [disabled]="event.invalid" (click)="RunUpdate()">{{selectedBUttonText}}</button>
+     </div>
+
+     <div class="chips" *ngIf="enableEditing && (activeToolBarButton == 'Delete')">
+       <span>Deleting the following events:</span>
+        <mat-chip-list>
+            <mat-chip selectable removable (removed)="remove(chip)" *ngFor="let chip of deleteList" selected color="warn">
+              {{chip.eventName}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+        </mat-chip-list>
+         
+          
+        <button mat-button [disabled]="deleteList.length == 0" (click)="deleteEvent()">{{selectedBUttonText}}</button>
+     </div>
+        
+</div>
+

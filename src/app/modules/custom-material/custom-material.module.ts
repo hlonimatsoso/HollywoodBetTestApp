@@ -10,6 +10,8 @@ import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatChipsModule} from '@angular/material/chips'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     MatInputModule,
     MatFormFieldModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatListModule
   ],
   exports:[
     MatButtonModule,
@@ -36,7 +40,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     MatInputModule,
     MatFormFieldModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatListModule
   ]
 })
 export class CustomMaterialModule { }

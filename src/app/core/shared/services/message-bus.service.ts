@@ -3,6 +3,8 @@ import { Observable, Subject } from 'rxjs';
 import {Tournament} from '../../models/Tournament'
 import {EditingOptions} from '../../models/EditingOption'
 import { TournamentsService } from './tournaments.service';
+import { RaceEvent } from '../../models/RaceEvent';
+import { EventService } from './event.service';
 
 
 @Injectable({
@@ -16,14 +18,57 @@ export class MessageBusService {
   private _tournamentToolBar_updatedTournament = new Subject<Tournament>();
   private _tournamentCard_deleteTournament = new Subject<Tournament>();
   private _tournamentToolBar_deleteTournamentList = new Subject<Tournament[]>();
-
-
-
   private _tournamentService_isBusy = new Subject<boolean>();
   private _tournamentToolBar_activeEditingOption = new Subject<string>();
   private _tournamentToolBar_activeEditingTournament = new Subject<Tournament>();
 
+  private _eventToolBar_isEditEnabled = new Subject<boolean>();
+  private _eventToolBar_newEvent = new Subject<RaceEvent>();
+  private _eventToolBar_updatedEvent = new Subject<RaceEvent>();
+  private _eventCard_deleteEvent = new Subject<RaceEvent>();
+  private _eventToolBar_deleteEventList = new Subject<RaceEvent[]>();
+  private _eventService_isBusy = new Subject<boolean>();
+  private _eventToolBar_activeEditingOption = new Subject<string>();
+  private _eventToolBar_activeEditingEvent = new Subject<RaceEvent>();
+
+
   // Observable streams
+  // Events
+
+  get eventToolBar_isEditEnabled$(): Observable<boolean> {
+    return this._eventToolBar_isEditEnabled.asObservable();
+  }
+
+  get eventToolBar_newEvent$(): Observable<RaceEvent> {
+    return this._eventToolBar_newEvent.asObservable();
+  }
+
+  get eventToolBar_updatedEvent$(): Observable<RaceEvent> {
+    return this._eventToolBar_updatedEvent.asObservable();
+  }
+
+  get eventService_isBusy$(): Observable<boolean> {
+    return this._eventService_isBusy.asObservable();
+  }
+
+  get eventToolBar_activeEditingOption$(): Observable<string> {
+    return this._eventToolBar_activeEditingOption.asObservable();
+  }
+
+  get eventToolBar_activeEditingEvent$(): Observable<RaceEvent> {
+    return this._eventToolBar_activeEditingEvent.asObservable();
+  }
+
+  get eventCard_deleteEvent$(): Observable<RaceEvent> {
+    return this._eventCard_deleteEvent.asObservable();
+  }
+
+  get eventToolBar_deleteEventList$(): Observable<RaceEvent[]> {
+    return this._eventToolBar_deleteEventList.asObservable();
+  }
+
+
+  // Tournament
   get tournamentToolBox_isEditEnabled$(): Observable<boolean> {
     return this.tournamentToolBox_isEditEnabled.asObservable();
   }
@@ -59,6 +104,7 @@ export class MessageBusService {
   constructor() { }
 
   // Utility funstions for 'subjects' whom wish to emit updates
+  // Tournaments
   public tournamentToolBox_isEditEnabled_sendUpdate(isEnabled:boolean) {
     this.tournamentToolBox_isEditEnabled.next(isEnabled);
   }
@@ -91,6 +137,39 @@ export class MessageBusService {
     this._tournamentToolBar_deleteTournamentList.next(tournament);
   }
   
+  // Events
+   
+  public eventToolBar_isEditEnabled_sendUpdate(isEnabled:boolean) {
+    this._eventToolBar_isEditEnabled.next(isEnabled);
+  }
+
+  public eventToolBar_newEvent_sendUpdate(event:RaceEvent) {
+    this._eventToolBar_newEvent.next(event);
+  }
+
+  public eventToolBar_updatedEvent_sendUpdate(event:RaceEvent) {
+    this._eventToolBar_updatedEvent.next(event);
+  }
+
+  public eventService_isBusy_sendUpdate(isBusy:boolean) {
+    this._eventService_isBusy.next(isBusy);
+  }
+
+  public eventToolBar_activeEditingOption_sendUpdate(option:string) {
+    this._eventToolBar_activeEditingOption.next(option);
+  }
+
+  public eventToolBar_activeEditingEvent_sendUpdate(event:RaceEvent) {
+    this._eventToolBar_activeEditingEvent.next(event);
+  }
+
+  public eventCard_deleteEvent_sendUpdate(event:RaceEvent) {
+    this._eventCard_deleteEvent.next(event);
+  }
+
+  public eventToolBar_deleteEventList_sendUpdate(event:RaceEvent[]) {
+    this._eventToolBar_deleteEventList.next(event);
+  }
 
   clearMessage(subject:Subject<any>) {
       subject.next();

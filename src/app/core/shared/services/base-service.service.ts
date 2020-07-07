@@ -10,8 +10,8 @@ export class BaseServiceService {
   constructor() { }
 
  public handleError<T>(error: any) {
-   debugger;
-    return (error: any): Observable<T> => {
+   
+  return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
       console.error(`WTF HTTP ERROR: ${error}`); // log to console instead

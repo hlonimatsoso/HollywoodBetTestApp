@@ -1,1 +1,19 @@
-<p>event-list works!</p>
+<div class="container">
+    <div class="headingContainer">
+        <h3>Welcome to Hollywood Bet Events</h3>
+    </div>
+    
+    <app-event-tool-bar></app-event-tool-bar>
+    
+        <div *ngIf="!isEventListEmpty" class="eventsContainer">
+            something
+            <app-event-card class=".margin_X_5" *ngFor="let e of _events" [event]="e" [attr.data-ID]="e.RaceEventID" [enableEditing]="enableEditing"></app-event-card>
+        </div>
+    
+        <div *ngIf="isEventListEmpty" class="noContentToSee" #noContent>
+            Div.Fokol...
+        </div>
+</div>
+
+
+

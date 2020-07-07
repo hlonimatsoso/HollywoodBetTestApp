@@ -1,0 +1,9 @@
+.toolBar, .chips{
+    display: flex;
+}
+
+.eventsContainer, .chips{
+    display: flex;
+    flex-flow: wrap;
+    padding-top: 25px;
+}

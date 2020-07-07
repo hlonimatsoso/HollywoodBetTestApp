@@ -1,0 +1,36 @@
+.headingContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.toolBar{
+    display: flex;
+}
+
+.eventsContainer, .chips{
+    display: flex;
+    flex-flow: wrap;
+    padding-top: 25px;
+}
+
+
+app-event-card{
+    margin:5px;
+}
+
+app-event-tool-bar{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    background-color: red;
+}
+
+.noContentToSee{
+    height:400px;
+    width: 50%;
+    background-image:url("../../../../assets/images/204.jpg");
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    opacity: 0.85;
+}

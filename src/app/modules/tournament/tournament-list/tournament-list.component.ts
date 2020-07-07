@@ -15,8 +15,13 @@ export class TournamentListComponent implements OnInit {
   enableEditing:boolean
   tournamentServiceIsBusy:boolean;
 
+  get isTournamentListEmpty(){
+    return this._tournaments.length == 0;
+  }
+
   constructor(private _service:TournamentsService,private _messageBus: MessageBusService) {
-    
+    this._tournaments = [];
+
     this._messageBus.tournamentToolBox_isEditEnabled$.subscribe(value =>{ 
       console.log(`Tournament List: _messageBus.tournamentToolBox_isEditEnabled$ : ${value}`);
       this.enableEditing = value 
@@ -25,6 +30,10 @@ export class TournamentListComponent implements OnInit {
     this._messageBus.tournamentToolBox_newTournament$.subscribe(value =>{ 
       console.log(`Tournament List: _messageBus.tournamentToolBox_newTournament$ : ${value}`);
       this._tournaments.push(value); 
+      
+      // relolad component hack
+      this.ngOnInit();
+
     });
 
     this._messageBus.tournamentToolBar_updatedTournament$.subscribe(value =>{ 
