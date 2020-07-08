@@ -28,6 +28,7 @@ export class TournamentListComponent implements OnInit {
     });
 
     this._messageBus.tournamentToolBox_newTournament$.subscribe(value =>{ 
+      debugger;
       console.log(`Tournament List: _messageBus.tournamentToolBox_newTournament$ : ${value}`);
       this._tournaments.push(value); 
       

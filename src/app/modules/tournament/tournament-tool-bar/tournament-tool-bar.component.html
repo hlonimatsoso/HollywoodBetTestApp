@@ -8,13 +8,13 @@
             <mat-button-toggle value="Delete">Delete</mat-button-toggle>
           </mat-button-toggle-group>
     </div>
-     <div class="example-container" *ngIf="enableEditing && (activeToolBarButton != 'Delete')">
+     <div *ngIf="enableEditing && (activeToolBarButton != 'Delete')">
         <mat-form-field appearance="fill">
             <mat-label>Tournament Name</mat-label>
-            <input matInput placeholder="Durban July" [formControl]="tournament" required>
-            <mat-error *ngIf="tournament.invalid">{{getErrorMessage()}}</mat-error>
+            <input matInput placeholder="Durban July" [formControl]="_tournamentName" required>
+            <mat-error *ngIf="_tournamentName.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
-        <button mat-button [disabled]="tournament.invalid" (click)="RunUpdate()">{{selectedBUttonText}}</button>
+        <button mat-button [disabled]="_tournamentName.invalid" (click)="RunUpdate()">{{selectedBUttonText}}</button>
      </div>
 
      <div class="chips" *ngIf="enableEditing && (activeToolBarButton == 'Delete')">

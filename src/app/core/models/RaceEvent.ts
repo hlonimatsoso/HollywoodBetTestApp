@@ -1,9 +1,9 @@
 export class RaceEvent {
-    RaceEventID:number;
-    TournamentID:number;
-    Name:string;
-    Number:number;
-    EventDate:Date;
-    EventEndDate:Date;
-    AutoClose:boolean
+    eventID:number;
+    tournamentID:number;
+    eventName:string;
+    eventNumber:number;
+    eventDateTime:Date;
+    eventEndDateTime:Date;
+    autoClose:boolean
 }

@@ -15,6 +15,7 @@ export class MessageBusService {
   // Observable sources
   private tournamentToolBox_isEditEnabled = new Subject<boolean>();
   private tournamentToolBox_newTournament = new Subject<Tournament>();
+  private _tournamentToolBar_getAllTournaments = new Subject<Tournament[]>();
   private _tournamentToolBar_updatedTournament = new Subject<Tournament>();
   private _tournamentCard_deleteTournament = new Subject<Tournament>();
   private _tournamentToolBar_deleteTournamentList = new Subject<Tournament[]>();
@@ -101,6 +102,10 @@ export class MessageBusService {
     return this._tournamentToolBar_deleteTournamentList.asObservable();
   }
 
+  get tournamentToolBar_getAllTournaments$(): Observable<Tournament[]> {
+    return this._tournamentToolBar_getAllTournaments.asObservable();
+  }
+
   constructor() { }
 
   // Utility funstions for 'subjects' whom wish to emit updates
@@ -135,6 +140,10 @@ export class MessageBusService {
 
   public tournamentToolBar_deleteTournamentList_sendUpdate(tournament:Tournament[]) {
     this._tournamentToolBar_deleteTournamentList.next(tournament);
+  }
+  
+  public tournamentToolBar_getAllTournaments_sendUpdate(tournaments:Tournament[]) {
+    this._tournamentToolBar_getAllTournaments.next(tournaments);
   }
   
   // Events

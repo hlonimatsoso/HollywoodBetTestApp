@@ -7,14 +7,14 @@
       <mat-form-field appearance="fill">
         <mat-label>Enter your email as username</mat-label>
         <input matInput placeholder="test@hollywoodbet.com" [formControl]="email" [(ngModel)]="userRegistration.email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="email.invalid">{{getEmailValidationMessage}}</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
         <input matInput placeholder="P@ssw0d!" [formControl]="password" [(ngModel)]="userRegistration.password" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="email.invalid">{{getEmailValidationMessage()}}</mat-error>
       </mat-form-field>
     </div>
     <button mat-button type="submit" [disabled]="!f.form.valid">Register</button>

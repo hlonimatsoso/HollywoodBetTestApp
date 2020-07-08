@@ -6,8 +6,7 @@
     <app-event-tool-bar></app-event-tool-bar>
     
         <div *ngIf="!isEventListEmpty" class="eventsContainer">
-            something
-            <app-event-card class=".margin_X_5" *ngFor="let e of _events" [event]="e" [attr.data-ID]="e.RaceEventID" [enableEditing]="enableEditing"></app-event-card>
+            <app-event-card class=".margin_X_5" *ngFor="let e of _events" [event]="e" [attr.data-eventID]="e.eventID" [enableEditing]="enableEditing"></app-event-card>
         </div>
     
         <div *ngIf="isEventListEmpty" class="noContentToSee" #noContent>

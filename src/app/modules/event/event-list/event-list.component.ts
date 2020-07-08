@@ -26,6 +26,7 @@ export class EventListComponent implements OnInit {
 
     this._messageBus.eventToolBar_newEvent$.subscribe(value =>{
       console.log(`EventList.constructor()._messageBus.eventToolBar_newEvent$(): Last Update -> ${value}`);
+      debugger;
       this._events.push(value); 
       // relolad  hack
       this.ngOnInit();
@@ -34,10 +35,10 @@ export class EventListComponent implements OnInit {
     this._messageBus.eventToolBar_updatedEvent$.subscribe(value =>{ 
       console.log(`EventList.constructor()._messageBus.eventToolBar_updatedEvent$(): Last Update -> ${value}`);
       
-      const index = this._events.findIndex(t => t.RaceEventID == value.RaceEventID);
-      console.log(`EventList.constructor()._messageBus.eventToolBar_updatedEvent$(): Before Event UI list update: (${this._events[index].RaceEventID}) ${this._events[index].Name}`);
-      this._events[index].Name = value.Name;
-      console.log(`EventList.constructor()._messageBus.eventToolBar_updatedEvent$(): After Event UI list update: (${this._events[index].RaceEventID}) ${this._events[index].Name}`);
+      const index = this._events.findIndex(t => t.eventID == value.eventID);
+      console.log(`EventList.constructor()._messageBus.eventToolBar_updatedEvent$(): Before Event UI list update: (${this._events[index].eventID}) ${this._events[index].eventName}`);
+      this._events[index].eventName = value.eventName;
+      console.log(`EventList.constructor()._messageBus.eventToolBar_updatedEvent$(): After Event UI list update: (${this._events[index].eventID}) ${this._events[index].eventName}`);
     });
 
       this._messageBus.eventService_isBusy$.subscribe(value =>{ 
@@ -49,7 +50,7 @@ export class EventListComponent implements OnInit {
       console.log(`EventList.constructor()._messageBus.eventToolBar_deleteEventList$(): Last update:  ${list}`);
      
       for (let i in list) {
-        var idToRemove = Number.parseInt(list[i].RaceEventID.toString());
+        var idToRemove = Number.parseInt(list[i].eventID.toString());
         this._events.splice(idToRemove, 1);
         console.log(`EventList.constructor()._messageBus.eventToolBar_deleteEventList$(): Removed (${idToRemove}) ${JSON.stringify(list[i]) } from the UI list array`);
       }

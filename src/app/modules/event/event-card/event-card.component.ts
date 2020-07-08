@@ -24,8 +24,8 @@ export class EventCardComponent implements OnInit {
     var id:number = x.currentTarget.attributes.getNamedItem("data-RaceEventID").value;
     var name:string = x.currentTarget.attributes.getNamedItem("data-Name").value;
     var event = new RaceEvent();
-    event.RaceEventID = id;
-    event.Name = name;
+    event.eventID = id;
+    event.eventName = name;
     
     console.log(`EventService.editEvent(): Race Event active card changing to -> ${event}`);
 
@@ -39,8 +39,8 @@ export class EventCardComponent implements OnInit {
     var id:number = x.currentTarget.attributes.getNamedItem("data-RaceEventID").value;
     var name:string = x.currentTarget.attributes.getNamedItem("data-Name").value;
     var event = new RaceEvent();
-    event.RaceEventID = id;
-    event.Name = name;
+    event.eventID = id;
+    event.eventName = name;
 
     console.log(`RaceEvent Card: deleting ${event}`);
     console.log(`EventService.deleteEvent(): RaceEvent Card: deleting ${event}`);

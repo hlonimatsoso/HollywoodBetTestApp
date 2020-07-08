@@ -23,11 +23,11 @@ export class TournamentToolBarComponent implements OnInit {
    activeTournamentForEditing:Tournament;
 
    deleteList:Tournament[];
-
-
+   _tournamentName = new FormControl('', [Validators.required]);
+ 
    activeToolBarButtonChange(event:any){
      console.log(`${JSON.stringify(event.value)}`);
-     this.tournament.reset();
+     this._tournamentName.reset();
       this._messageBus.tournamentToolBar_activeEditingOption_sendUpdate(event.value);
    }
 
@@ -45,26 +45,25 @@ export class TournamentToolBarComponent implements OnInit {
     /*
     
     */
-    this._messageBus.tournamentToolBar_activeEditingTournament$.subscribe(tournament =>{ 
-      this.activeTournamentForEditing = tournament;
+    this._messageBus.tournamentToolBar_activeEditingTournament$.subscribe(_tournamentName =>{ 
+      this.activeTournamentForEditing = _tournamentName;
       console.log(`Tournament toolbar: messageBus.activeEditingTournament: ${this.activeTournamentForEditing}`);
       
-      this.tournament.setValue(this.activeTournamentForEditing.tournamentName); 
+      this._tournamentName.setValue(this.activeTournamentForEditing.tournamentName); 
     });
 
-    this._messageBus.tournamentCard_deleteTournament$.subscribe(tournament =>{ 
-      this.deleteList.push(tournament);
-      console.log(`Tournament toolbar: messageBus.tournamentCard_deleteTournament$: adding ${tournament.tournamentName} to the delete list`);
+    this._messageBus.tournamentCard_deleteTournament$.subscribe(_tournamentName =>{ 
+      this.deleteList.push(_tournamentName);
+      console.log(`Tournament toolbar: messageBus.tournamentCard_deleteTournament$: adding ${_tournamentName.tournamentName} to the delete list`);
       
     });
 
   }
 
-  tournament = new FormControl('', [Validators.required]);
-  buttonText:string;
+
 
   getErrorMessage() {
-    if (this.tournament.hasError('required')) {
+    if (this._tournamentName.hasError('required')) {
       return 'Enter a valid tournament name';
     }
   }
@@ -93,17 +92,17 @@ export class TournamentToolBarComponent implements OnInit {
   
   RunUpdate(){
 
-    console.log(this.tournament.value);
+    console.log(this._tournamentName.value);
  
     if(this.activeToolBarButton == "Add"){
-      this.addTournament(this.tournament.value);
+      this.addTournament(this._tournamentName.value);
     }else if(this.activeToolBarButton == "Edit"){
-      this.updateTournament(this.tournament.value);
+      this.updateTournament(this._tournamentName.value);
     }else{
       this.deleteTournament();
     }
 
-    this.tournament.reset();
+    this._tournamentName.reset();
   }
 
   addTournament(name:string){

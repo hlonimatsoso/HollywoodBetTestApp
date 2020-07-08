@@ -1,9 +1,14 @@
 <mat-card class="card">
-    <mat-card-title>({{event.RaceEventID}}) {{event.Name}}</mat-card-title>
-    <mat-card-subtitle>subtitle</mat-card-subtitle>
-    <mat-card-content>This is where most of the content will gom</mat-card-content>
+    <mat-card-title>({{event.eventID}}) {{event.eventName}} #{{event.eventNumber}}</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-content>Start Date: {{event.eventDateTime}}</mat-card-content>
+    <mat-card-content>End Date: {{event.eventDateTime}}</mat-card-content>
+    <mat-card-content>Auto Close <mat-checkbox [checked]="event.autoClose"  [disabled]="true">Disabled</mat-checkbox></mat-card-content>
+
     <mat-card-actions>
-        <button mat-button>View</button> <button *ngIf="enableEditing" [attr.data-RaceEventID]="event.RaceEventID" [attr.data-eventName]="event.Name" mat-button (click)="editEvent($event)">Edit</button> <button  *ngIf="enableEditing"  [attr.data-RaceEventID]="event.RaceEventID" [attr.data-name]="event.Name" mat-button (click)="deleteEvent($event)">Delete</button>
+        <button mat-button>View</button> <button *ngIf="enableEditing" [attr.data-eventID]="event.eventID" [attr.data-eventName]="event.eventName" mat-button (click)="editEvent($event)">Edit</button> <button  *ngIf="enableEditing"  [attr.data-eventID]="event.eventID" [attr.data-eventName]="event.eventName" mat-button (click)="deleteEvent($event)">Delete</button>
     </mat-card-actions>
     <mat-card-footer>footer... so long friend....</mat-card-footer><!-- -->
 </mat-card>
+
+

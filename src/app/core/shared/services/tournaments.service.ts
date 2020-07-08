@@ -34,7 +34,10 @@ export class TournamentsService extends BaseServiceService {
 
     return this._http.get<Tournament[]>(this._settings.tournamentsUrl, httpOptions)
                .pipe(
-                  tap(x => console.log(`Tournament Service: Get All -> ${JSON.stringify(x)}`)),
+                  tap(x => {
+                    console.log(`TournamentService.getTournaments().tap(): Got all tournaments & letting the world know -> ${JSON.stringify(x)}`);
+                    this._messageBus.tournamentToolBar_getAllTournaments_sendUpdate(x);
+                  }),
                   finalize (()=>{
                     this._messageBus.tournamentService_isBusy_sendUpdate(false);
                   })

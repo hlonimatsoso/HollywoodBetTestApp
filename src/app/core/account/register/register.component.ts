@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  getErrorMessage() {
+  getEmailValidationMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
   }

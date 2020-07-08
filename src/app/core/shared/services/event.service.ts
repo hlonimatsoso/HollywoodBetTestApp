@@ -59,12 +59,12 @@ export class EventService extends BaseServiceService {
 
   
 
-  addEvent (event: RaceEvent): Observable<RaceEvent> {
+  addEvent (event: RaceEvent):any {
     this._messageBus.tournamentService_isBusy_sendUpdate(true);
 
     console.log(`EventService.addEvent(): HTTP Post to '${this._settings.eventsUrl}' with  ` + JSON.stringify(event));
 
-    var result = this._http.post<RaceEvent>(this._settings.eventsUrl, this._httpOptions)
+    var result = this._http.post<RaceEvent>(this._settings.eventsUrl,event, this._httpOptions)
       .pipe(
         tap((x)=>{ console.log(`EventService.addEvent().Tap(): Result -> ` + x) }),
         finalize(()=>{
@@ -83,7 +83,7 @@ export class EventService extends BaseServiceService {
 
     console.log(`EventService.updateEvent(): HTTP Post to '${this._settings.eventsUrl}' with  ` + JSON.stringify(event));
 
-    event.RaceEventID = Number.parseInt(event.RaceEventID.toString());
+    event.eventID = Number.parseInt(event.eventID.toString());
 
     var result = this._http.post<RaceEvent>(this._settings.eventsUrl, event, this._httpOptions)
       .pipe(
@@ -102,7 +102,7 @@ export class EventService extends BaseServiceService {
     this._messageBus.tournamentService_isBusy_sendUpdate(true);
 
     for (let i in events) {
-      events[i].RaceEventID = Number.parseInt(events[i].RaceEventID.toString());
+      events[i].eventID = Number.parseInt(events[i].eventID.toString());
     }
     
    console.log(`EventService.deleteEvent(): HTTP Delete to '${this._settings.eventsUrl}/Delete' with  ` + JSON.stringify(events));
