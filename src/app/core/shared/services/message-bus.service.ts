@@ -31,6 +31,8 @@ export class MessageBusService {
   private _eventService_isBusy = new Subject<boolean>();
   private _eventToolBar_activeEditingOption = new Subject<string>();
   private _eventToolBar_activeEditingEvent = new Subject<RaceEvent>();
+  private _eventToolBar_getAllEvents = new Subject<RaceEvent[]>();
+
 
 
   // Observable streams
@@ -68,6 +70,9 @@ export class MessageBusService {
     return this._eventToolBar_deleteEventList.asObservable();
   }
 
+  get eventToolBar_getAllEvents$(): Observable<RaceEvent[]> {
+    return this._eventToolBar_getAllEvents.asObservable();
+  }
 
   // Tournament
   get tournamentToolBox_isEditEnabled$(): Observable<boolean> {
@@ -178,6 +183,10 @@ export class MessageBusService {
 
   public eventToolBar_deleteEventList_sendUpdate(event:RaceEvent[]) {
     this._eventToolBar_deleteEventList.next(event);
+  }
+
+  public eventToolBar_getAllEvents_sendUpdate(events:RaceEvent[]) {
+    this._eventToolBar_getAllEvents.next(events);
   }
 
   clearMessage(subject:Subject<any>) {

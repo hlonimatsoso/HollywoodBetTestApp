@@ -23,6 +23,10 @@ export const routes: Routes = [
       { 
         path: 'events', 
         loadChildren: () => import('../../modules/event/event.module').then(m => m.EventModule) 
+      },
+      { 
+        path: 'horses', 
+        loadChildren: () => import('../../modules/event-detail/event-detail.module').then(m => m.EventDetailModule) 
       }
     ]
   }

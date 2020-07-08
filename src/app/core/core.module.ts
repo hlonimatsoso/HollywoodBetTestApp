@@ -8,6 +8,8 @@ import {TournamentsService} from './shared/services/tournaments.service'
 import {MessageBusService} from '../core/shared/services/message-bus.service';
 import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component'
 import {OhGreatOracleService} from '../core/shared/services/oh-great-oracle.service';
+import {EventDetailMessageBusService} from '../core/shared/services/event-detail-message-bus.service';
+
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import {OhGreatOracleService} from '../core/shared/services/oh-great-oracle.serv
     AuthGuardService,
     TournamentsService,
     MessageBusService,
-    OhGreatOracleService
+    OhGreatOracleService,
+    EventDetailMessageBusService
   ]
 })
 export class CoreModule { }

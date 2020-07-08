@@ -18,7 +18,7 @@ import {SettingsService} from './core/settings/settings.service'
 import {CoreModule} from './core/core.module'
 import {SharedModule} from './core/shared/shared.module'
 import {AccountModule} from './core/account/account.module'
-
+import {EventDetailModule} from './modules/event-detail/event-detail.module'
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import {AccountModule} from './core/account/account.module'
     EventModule,
     CoreModule,
     SharedModule,
-    AccountModule
+    AccountModule,
+    EventDetailModule
   ],
   providers: [SettingsService],
   bootstrap: [AppComponent]

@@ -38,4 +38,8 @@ export class SettingsService {
   get eventsUrl(){
     return "https://localhost:11000/api/Events";
   }
+
+  get eventDetailUrl(){
+    return "https://localhost:11000/api/EventDetail";
+  }
 }

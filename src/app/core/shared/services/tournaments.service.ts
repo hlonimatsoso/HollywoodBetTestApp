@@ -120,28 +120,7 @@ export class TournamentsService extends BaseServiceService {
     
 
     return result;
-  //   let body = {
-  //     tournaments:tournament
-  // };
-  
-  // let options = new RequestOptionsArgs({ 
-  //     body: body,
-  //     method: RequestMethod.Delete
-  //   });
-  
-  // this.http.request('http://testAPI:3000/stuff', options)
-  //     .subscribe((ok)=>{console.log(ok)});
 
-
-    // console.log(`Posting a delete to ${this._settings.tournamentsUrl}`);
-    // return this._http.delete<Tournament[]>(this._settings.tournamentsUrl, tournamen,,httpOptions)
-    //            .pipe(
-    //               tap(x => console.log(`Tournament Service: Post Tournament -> ${JSON.stringify(x)}`)),
-    //               finalize (()=>{
-    //                 this._messageBus.tournamentService_isBusy_sendUpdate(false);
-    //               })
-    //                 //catchError( this.handleError())
-    //             );
   }
 
 }

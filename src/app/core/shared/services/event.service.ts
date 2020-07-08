@@ -46,9 +46,12 @@ export class EventService extends BaseServiceService {
     
     this._messageBus.eventService_isBusy_sendUpdate(true);
    
-    return this._http.get<RaceEvent[]>(this._settings.eventsUrl, this._httpOptions)
+    return this._http.get<any>(this._settings.eventsUrl, this._httpOptions)
                .pipe(
-                  tap(x => console.log(`EventService.getAllEvents().tap() : Result -> ${JSON.stringify(x)}`)),
+                tap(x => {
+                  console.log(`EventService.getAllEvents().tap(): Got all events & letting the world know -> ${JSON.stringify(x)}`);
+                  //this._messageBus.eventToolBar_getAllEvents_sendUpdate(x);
+                }),
                   finalize (()=>{
                     this._messageBus.tournamentService_isBusy_sendUpdate(false);
                     console.log(`EventService.getAllEvents().finalize(): HTTP request complete.`);

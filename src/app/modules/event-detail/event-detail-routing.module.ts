@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {EventListComponent} from './event-list/event-list.component'
+import {EventDetailListComponent} from './event-detail-list/event-detail-list.component'
 import {HomeService} from '../../shell/home/home.service'
-
 
 export const routes: Routes = [
   HomeService.childRoutes([
-    { path: 'events', component:EventListComponent, pathMatch: 'full'}
+    { path: 'horses', component:EventDetailListComponent, pathMatch: 'full'}
   ])
 ]
 
